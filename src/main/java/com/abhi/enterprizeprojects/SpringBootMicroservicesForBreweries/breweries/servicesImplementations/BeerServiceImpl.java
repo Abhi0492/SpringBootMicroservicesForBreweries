@@ -17,6 +17,7 @@ public class BeerServiceImpl implements BeerService{
 								.beerName("Budweiser")
 								.beerStyle("Magnum")
 								.build();
+		
 	}
 
 	
