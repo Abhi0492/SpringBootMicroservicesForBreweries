@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -37,10 +38,15 @@ public class BeerController {
 	}
 	
 	@PostMapping //POST - creates New Beer
-	public ResponseEntity<BeerDto> handlePost(BeerDto beerDto) {
+	public ResponseEntity<BeerDto> handlePost(@RequestBody BeerDto beerDto) {
 		
 		
 		BeerDto saveDto = beerService.saveNewBeer(beerDto);
+		
+		System.out.println(beerDto.getBeerName());
+		System.out.println(beerDto.getBeerStyle());
+		System.out.println(beerDto.getId());
+		System.out.println(beerDto.getUpc());
 		
 		HttpHeaders httpHeaders = new HttpHeaders();
 		//TODO: Add Hostname to URL
@@ -50,10 +56,16 @@ public class BeerController {
 		
 	}
 	
+	
 	@PutMapping("/{beerId}")
-	public ResponseEntity<BeerDto> handleUpdate(@PathVariable UUID beerId, BeerDto beerDto) {
+	public ResponseEntity<BeerDto> handleUpdate(@PathVariable UUID beerId, @RequestBody BeerDto beerDto) {
 		
 		beerService.updateBeer(beerId, beerDto);
+		
+		System.out.println(beerDto.getBeerName());
+		System.out.println(beerDto.getBeerStyle());
+		System.out.println(beerDto.getId());
+		System.out.println(beerDto.getUpc());
 		
 		return new ResponseEntity<BeerDto>(HttpStatus.NO_CONTENT);
 	}
