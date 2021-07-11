@@ -7,4 +7,10 @@ import com.abhi.enterprizeprojects.SpringBootMicroservicesForBreweries.breweries
 public interface CustomerService {
 
 	public CustomerDto getCustomerById(UUID id);
+
+	public CustomerDto saveNewCustomer(CustomerDto customerDto);
+
+	public void updateExistingCustomer(UUID customerId, CustomerDto customerDto);
+
+	public void deleteCustomerById(UUID customerId);
 }

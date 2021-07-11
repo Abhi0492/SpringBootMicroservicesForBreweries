@@ -7,6 +7,11 @@ import org.springframework.stereotype.Service;
 import com.abhi.enterprizeprojects.SpringBootMicroservicesForBreweries.breweries.models.BeerDto;
 import com.abhi.enterprizeprojects.SpringBootMicroservicesForBreweries.breweries.services.BeerService;
 
+import lombok.extern.slf4j.Slf4j;
+
+
+
+@Slf4j
 @Service
 public class BeerServiceImpl implements BeerService{
 
@@ -31,6 +36,13 @@ public class BeerServiceImpl implements BeerService{
 	@Override
 	public void updateBeer(UUID beerId, BeerDto beerDto) {
 		// TODO : Adding impl to update a beer 
+		
+	}
+
+	@Override
+	public void deleteByBeerId(UUID beerId) {
+		// TODO Auto-generated method stub
+		log.debug("Deleting a beer");
 		
 	}
 
