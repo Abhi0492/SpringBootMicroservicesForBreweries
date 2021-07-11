@@ -28,6 +28,12 @@ public class BeerServiceImpl implements BeerService{
 					.build();
 	}
 
+	@Override
+	public void updateBeer(UUID beerId, BeerDto beerDto) {
+		// TODO : Adding impl to update a beer 
+		
+	}
+
 	
 	
 }
