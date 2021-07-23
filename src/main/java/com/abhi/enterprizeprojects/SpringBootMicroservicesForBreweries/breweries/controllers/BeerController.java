@@ -3,12 +3,14 @@ package com.abhi.enterprizeprojects.SpringBootMicroservicesForBreweries.brewerie
 import java.util.UUID;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +26,7 @@ import com.abhi.enterprizeprojects.SpringBootMicroservicesForBreweries.breweries
 
 @Deprecated
 @ComponentScan({"com.abhi.enterprizeprojects.SpringBootMicroservicesForBreweries.breweries.services"})
+@Validated
 @RequestMapping("/beerServiceApi/v1/beer")
 @RestController
 public class BeerController {
@@ -41,14 +44,14 @@ public class BeerController {
 
 
 	@GetMapping("/{beerId}")
-	public ResponseEntity<BeerDto> getBeer(@PathVariable UUID beerId) {
+	public ResponseEntity<BeerDto> getBeer(@PathVariable @NotNull UUID beerId) {
 		
 		return new ResponseEntity<>(beerService.getBeerById(beerId), HttpStatus.OK);
 		
 	}
 	
 	@PostMapping //POST - creates New Beer
-	public ResponseEntity<BeerDto> handlePost(@Valid @RequestBody BeerDto beerDto) {
+	public ResponseEntity<BeerDto> handlePost(@Valid @NotNull @RequestBody BeerDto beerDto) {
 		
 		
 		BeerDto saveDto = beerService.saveNewBeer(beerDto);
