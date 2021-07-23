@@ -79,18 +79,4 @@ public class CustomerController {
 		
 	}
 	
-	@ExceptionHandler(ConstraintViolationException.class)
-	public ResponseEntity<List> validationErrorHandler(ConstraintViolationException e) {
-		
-		List<String> errors = new ArrayList<>(e.getConstraintViolations().size());
-		
-		e.getConstraintViolations().forEach(contraintViolation -> {
-			errors.add(contraintViolation.getPropertyPath() + " : " + contraintViolation.getMessage());
-		});
-		
-		return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
-		
-	}
-	
-
 }
