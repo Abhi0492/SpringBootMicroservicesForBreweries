@@ -2,6 +2,7 @@ package com.abhi.enterprizeprojects.SpringBootMicroservicesForBreweries.brewerie
 
 import java.util.UUID;
 
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.abhi.enterprizeprojects.SpringBootMicroservicesForBreweries.breweries.models.CustomerDto;
 import com.abhi.enterprizeprojects.SpringBootMicroservicesForBreweries.breweries.services.CustomerService;
 
+
+@ComponentScan({"com.abhi.enterprizeprojects.SpringBootMicroservicesForBreweries.breweries.services"})
 @RequestMapping("/customerServiceApi/v1/customer")
 @RestController
 public class CustomerController {

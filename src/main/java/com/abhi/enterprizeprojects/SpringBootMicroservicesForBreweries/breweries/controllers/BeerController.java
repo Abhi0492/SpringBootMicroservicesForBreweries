@@ -2,6 +2,10 @@ package com.abhi.enterprizeprojects.SpringBootMicroservicesForBreweries.brewerie
 
 import java.util.UUID;
 
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,12 +23,15 @@ import com.abhi.enterprizeprojects.SpringBootMicroservicesForBreweries.breweries
 import com.abhi.enterprizeprojects.SpringBootMicroservicesForBreweries.breweries.services.BeerService;
 
 @Deprecated
+@ComponentScan({"com.abhi.enterprizeprojects.SpringBootMicroservicesForBreweries.breweries.services"})
 @RequestMapping("/beerServiceApi/v1/beer")
 @RestController
 public class BeerController {
 	
 	
 	private final BeerService beerService;
+	
+	
 
 	public BeerController(BeerService beerService) {
 		super();
@@ -41,7 +48,7 @@ public class BeerController {
 	}
 	
 	@PostMapping //POST - creates New Beer
-	public ResponseEntity<BeerDto> handlePost(@RequestBody BeerDto beerDto) {
+	public ResponseEntity<BeerDto> handlePost(@Valid @RequestBody BeerDto beerDto) {
 		
 		
 		BeerDto saveDto = beerService.saveNewBeer(beerDto);
@@ -61,7 +68,7 @@ public class BeerController {
 	
 	
 	@PutMapping("/{beerId}")
-	public ResponseEntity<BeerDto> handleUpdate(@PathVariable UUID beerId, @RequestBody BeerDto beerDto) {
+	public ResponseEntity<BeerDto> handleUpdate(@PathVariable UUID beerId, @Valid @RequestBody BeerDto beerDto) {
 		
 		beerService.updateBeer(beerId, beerDto);
 		

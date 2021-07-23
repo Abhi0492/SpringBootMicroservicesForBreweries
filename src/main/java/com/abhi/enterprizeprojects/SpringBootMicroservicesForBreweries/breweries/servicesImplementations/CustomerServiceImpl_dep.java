@@ -11,7 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-public class CustomerServiceImpl implements CustomerService{
+public class CustomerServiceImpl_dep implements CustomerService{
 
 	@Override
 	public CustomerDto getCustomerById(UUID id) {

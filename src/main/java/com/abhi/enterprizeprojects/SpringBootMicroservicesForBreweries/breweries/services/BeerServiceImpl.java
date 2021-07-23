@@ -1,7 +1,8 @@
-package com.abhi.enterprizeprojects.SpringBootMicroservicesForBreweries.breweries.servicesImplementations;
+package com.abhi.enterprizeprojects.SpringBootMicroservicesForBreweries.breweries.services;
 
 import java.util.UUID;
 
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.abhi.enterprizeprojects.SpringBootMicroservicesForBreweries.breweries.models.BeerDto;
