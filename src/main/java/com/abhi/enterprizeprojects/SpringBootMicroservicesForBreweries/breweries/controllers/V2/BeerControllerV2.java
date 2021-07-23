@@ -1,11 +1,17 @@
 package com.abhi.enterprizeprojects.SpringBootMicroservicesForBreweries.breweries.controllers.V2;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
+
+import javax.validation.ConstraintViolationException;
+import javax.validation.Valid;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,7 +46,7 @@ public class BeerControllerV2 {
 	}
 	
 	@PostMapping //POST - creates New Beer
-	public ResponseEntity<BeerDtoV2> handlePost(@RequestBody BeerDtoV2 beerDtov2) {
+	public ResponseEntity<BeerDtoV2> handlePost(@Valid @RequestBody BeerDtoV2 beerDtov2) {
 		
 		
 		BeerDtoV2 saveDto = beerServicev2.saveNewBeer(beerDtov2);
@@ -60,7 +66,7 @@ public class BeerControllerV2 {
 	
 	
 	@PutMapping("/{beerId}")
-	public ResponseEntity<BeerDtoV2> handleUpdate(@PathVariable UUID beerId, @RequestBody BeerDtoV2 beerDtov2) {
+	public ResponseEntity<BeerDtoV2> handleUpdate(@PathVariable UUID beerId, @Valid @RequestBody BeerDtoV2 beerDtov2) {
 		
 		beerServicev2.updateBeer(beerId, beerDtov2);
 		
@@ -78,6 +84,18 @@ public class BeerControllerV2 {
 		
 		beerServicev2.deleteByBeerId(beerId);
 		
+	}
+	
+	@ExceptionHandler(ConstraintViolationException.class)
+	public ResponseEntity<List> validationsErrorHandler(ConstraintViolationException e) {
+		
+		List<String> errors = new ArrayList<>(e.getConstraintViolations().size());
+		
+		e.getConstraintViolations().forEach(constraintViolation -> {
+			errors.add(constraintViolation.getPropertyPath() + ":" + constraintViolation.getMessage());
+		});
+		
+		return new ResponseEntity<List>(errors, HttpStatus.BAD_REQUEST);
 	}
 	
 }
