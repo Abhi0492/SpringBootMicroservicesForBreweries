@@ -1,4 +1,4 @@
-package com.abhi.enterprizeprojects.SpringBootMicroservicesForBreweries.breweries.servicesImplementations.V2;
+package com.abhi.enterprizeprojects.SpringBootMicroservicesForBreweries.breweries.services.V2;
 
 import java.util.UUID;
 
