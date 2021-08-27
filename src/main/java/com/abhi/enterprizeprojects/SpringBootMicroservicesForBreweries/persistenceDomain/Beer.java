@@ -1,5 +1,6 @@
 package com.abhi.enterprizeprojects.SpringBootMicroservicesForBreweries.persistenceDomain;
 
+import java.sql.Timestamp;
 import java.util.UUID;
 
 import com.abhi.enterprizeprojects.SpringBootMicroservicesForBreweries.breweries.models.V2.BeerStyleEnum;
@@ -19,5 +20,7 @@ public class Beer {
 	private String beerName;
 	private BeerStyleEnum beerStyle;
 	private Long upc;
-
+	
+	private Timestamp createdDate;
+	private Timestamp lastUpdatedDate;
 }

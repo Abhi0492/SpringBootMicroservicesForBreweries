@@ -5,7 +5,7 @@ import org.mapstruct.Mapper;
 import com.abhi.enterprizeprojects.SpringBootMicroservicesForBreweries.breweries.models.BeerDto;
 import com.abhi.enterprizeprojects.SpringBootMicroservicesForBreweries.persistenceDomain.Beer;
 
-@Mapper
+@Mapper(uses = {DateMapper.class})
 public interface BeerMapper {
 	
 	BeerDto beerToBeerDto(Beer beer);
